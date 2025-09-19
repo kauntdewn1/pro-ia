@@ -1,10 +1,18 @@
 import { ref, onMounted } from 'vue'
 import { logDebug } from '../utils/logger'
 
+/**
+ * Composable para gerenciar funcionalidades PWA
+ * Inclui registro de Service Worker, instalação e atualizações
+ */
 export function usePWA() {
   const updateAvailable = ref(false)
   const registration = ref<ServiceWorkerRegistration | null>(null)
 
+  /**
+   * Registra o Service Worker para funcionalidades PWA
+   * @returns Promise<void>
+   */
   const registerSW = async () => {
     if ('serviceWorker' in navigator) {
       try {
@@ -30,6 +38,10 @@ export function usePWA() {
     }
   }
 
+  /**
+   * Atualiza o Service Worker quando uma nova versão está disponível
+   * @returns Promise<void>
+   */
   const updateSW = async () => {
     if (registration.value && registration.value.waiting) {
       registration.value.waiting.postMessage({ type: 'SKIP_WAITING' })
@@ -57,6 +69,10 @@ export function usePWA() {
     })
   })
 
+  /**
+   * Instala o app PWA no dispositivo do usuário
+   * @returns Promise<void>
+   */
   const installApp = async () => {
     if (installPrompt.value) {
       installPrompt.value.prompt()

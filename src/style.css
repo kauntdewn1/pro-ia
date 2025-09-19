@@ -1,6 +1,46 @@
+/* Fontes */
+@import url('https://fonts.googleapis.com/css2?family=Avenir+Next:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* =========================
+   PRO.IA Branding Colors
+   ========================= */
+:root {
+  /* Cores Primárias */
+  --proia-roxao: #1b1330;
+  --proia-roxo: #381f57;
+  --proia-ios-blue: #007AFF;
+  --proia-ios-white: #F2F2F7;
+  --proia-ios-dark: #1C1C1E;
+  
+  /* Cores Secundárias Neon */
+  --proia-neon-pink: #ff2dac;
+  --proia-neon-blue: #00d4ff;
+  --proia-neon-purple: #b026ff;
+  --proia-neon-cyan: #00ffff;
+  --proia-neon-magenta: #ff00ff;
+  
+  /* Cores de Status */
+  --proia-success: #34C759;
+  --proia-warning: #FF9500;
+  --proia-error: #FF3B30;
+  --proia-info: #007AFF;
+  
+  /* Gradientes */
+  --proia-gradient-cta: linear-gradient(135deg, var(--proia-neon-pink), var(--proia-neon-blue));
+  --proia-gradient-glow: linear-gradient(135deg, var(--proia-neon-purple), var(--proia-neon-pink));
+  --proia-gradient-bg: linear-gradient(145deg, #1b1330 0%, #381f57 50%, #1b1330 100%);
+  --proia-gradient-cyber: linear-gradient(135deg, var(--proia-neon-purple), var(--proia-neon-magenta));
+  
+  /* Shadows */
+  --proia-shadow-glow: 0 0 20px rgba(183, 38, 255, 0.3);
+  --proia-shadow-glow-pink: 0 0 20px rgba(255, 45, 172, 0.3);
+  --proia-shadow-glow-blue: 0 0 20px rgba(0, 212, 255, 0.3);
+  --proia-shadow-glow-strong: 0 0 40px rgba(183, 38, 255, 0.5);
+}
 
 /* =========================
    iOS-Like Components Layer
@@ -26,26 +66,553 @@
 
   /* Cards arredondados com glassmorphism */
   .ios-card {
-    @apply rounded-ios p-4 border border-ios-border shadow-ios;
+    @apply rounded-ios p-4 shadow-ios;
     background: rgba(255, 255, 255, 0.72);
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid var(--proia-roxo);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
   }
   .ios-card:active {
     transform: scale(0.98);
   }
+  .ios-card:hover {
+    box-shadow: 0 8px 32px rgba(183, 38, 255, 0.2);
+  }
 
   /* Botões estilo Apple com glassmorphism */
   .ios-btn {
-    @apply inline-flex items-center justify-center rounded-full px-5 py-3 font-medium text-white shadow-ios;
-    background: linear-gradient(145deg, theme("colors.ios.blue"), theme("colors.ios.blueDark"));
+    @apply inline-flex items-center justify-center rounded-full px-5 py-3 font-medium text-white;
+    background: var(--proia-ios-blue);
     backdrop-filter: blur(12px) saturate(180%);
     -webkit-backdrop-filter: blur(12px) saturate(180%);
-    transition: all 0.2s ease-in-out;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    box-shadow: 0 4px 16px rgba(0, 122, 255, 0.3);
   }
   .ios-btn:active {
+    transform: scale(0.98);
+  }
+  .ios-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 32px rgba(0, 122, 255, 0.4);
+  }
+  
+  /* Botão Cyberpunk */
+  .cyber-btn {
+    @apply inline-flex items-center justify-center rounded-full px-5 py-3 font-medium text-white;
+    background: var(--proia-gradient-cyber);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    box-shadow: var(--proia-shadow-glow);
+  }
+  .cyber-btn:active {
+    transform: scale(0.98);
+  }
+  .cyber-btn:hover {
+    transform: scale(1.05);
+    box-shadow: var(--proia-shadow-glow-strong);
+  }
+
+  /* =========================
+     PRO.IA Branding Classes
+     ========================= */
+  
+  /* Background principal com branding */
+  .proia-bg {
+    background: var(--proia-gradient-bg);
+    min-height: 100vh;
+    color: white;
+    position: relative;
+  }
+
+  /* Efeito grid sobreposto (tech vibe sutil) */
+  .proia-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 80px 80px;
+    pointer-events: none;
+    opacity: 0.7;
+    animation: proia-grid-pulse 4s ease-in-out infinite;
+  }
+  
+  /* Background glassmorphism dark */
+  .proia-glass-dark {
+    background: rgba(27, 19, 48, 0.8);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--proia-roxo);
+  }
+  
+  /* Background glassmorphism light */
+  .proia-glass-light {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--proia-roxo);
+  }
+  
+  /* Botão CTA principal */
+  .proia-btn-cta {
+    @apply inline-flex items-center justify-center rounded-full px-8 py-4 font-bold text-white text-lg;
+    background: var(--proia-gradient-cta);
+    box-shadow: 0 0 30px rgba(255, 45, 172, 0.4), 0 0 60px rgba(0, 212, 255, 0.3);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+  .proia-btn-cta::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+  .proia-btn-cta:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 0 40px rgba(255, 45, 172, 0.6), 0 0 80px rgba(0, 212, 255, 0.5), 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+  .proia-btn-cta:hover::before {
+    transform: translateX(100%);
+  }
+  .proia-btn-cta:active {
+    transform: scale(0.98) translateY(0);
+  }
+  
+  /* Botão secundário */
+  .proia-btn-secondary {
+    @apply inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold;
+    background: rgba(27, 19, 48, 0.8);
+    color: var(--proia-neon-blue);
+    border: 2px solid var(--proia-neon-blue);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  }
+  .proia-btn-secondary:hover {
+    background: var(--proia-neon-blue);
+    color: white;
+    box-shadow: var(--proia-shadow-glow-blue);
+    transform: scale(1.05);
+  }
+  
+  /* Botão Ghost */
+  .proia-btn-ghost {
+    @apply inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold;
+    background: transparent;
+    color: var(--proia-ios-white);
+    border: 2px solid var(--proia-ios-white);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  }
+  .proia-btn-ghost:hover {
+    background: var(--proia-ios-white);
+    color: var(--proia-roxao);
+    transform: scale(1.05);
+  }
+  
+  /* Títulos com branding */
+  .proia-title {
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    font-weight: 700;
+    background: var(--proia-gradient-glow);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Títulos iOS */
+  .ios-title {
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    font-weight: 700;
+    color: var(--proia-ios-white);
+  }
+  
+  /* Texto neon */
+  .proia-text-neon {
+    color: var(--proia-neon-blue);
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+  }
+  
+  /* Texto neon pink */
+  .proia-text-neon-pink {
+    color: var(--proia-neon-pink);
+    text-shadow: 0 0 20px rgba(255, 45, 172, 0.5);
+  }
+  
+  /* Texto neon purple */
+  .proia-text-neon-purple {
+    color: var(--proia-neon-purple);
+    text-shadow: 0 0 20px rgba(183, 38, 255, 0.5);
+  }
+  
+  /* Card com glow */
+  .proia-card-glow {
+    @apply rounded-2xl p-6;
+    background: rgba(27, 19, 48, 0.6);
+    border: 1px solid var(--proia-roxo);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: var(--proia-shadow-glow);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.5, 1);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+  .proia-card-glow::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(183, 38, 255, 0.1) 0%, rgba(255, 45, 172, 0.1) 50%, rgba(0, 212, 255, 0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .proia-card-glow:hover {
+    box-shadow: 0 0 50px rgba(183, 38, 255, 0.6), 0 0 100px rgba(255, 45, 172, 0.4), 0 12px 40px rgba(0, 0, 0, 0.2);
+    transform: translateY(-6px) scale(1.02);
+    border-color: var(--proia-neon-purple);
+  }
+  .proia-card-glow:hover::before {
+    opacity: 1;
+  }
+  
+  /* Card Cyberpunk */
+  .cyber-card {
+    @apply rounded-2xl p-6;
+    background: rgba(27, 19, 48, 0.8);
+    border: 1px solid var(--proia-neon-purple);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: var(--proia-shadow-glow);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  }
+  .cyber-card:hover {
+    box-shadow: var(--proia-shadow-glow-strong);
+    transform: translateY(-4px);
+    border-color: var(--proia-neon-magenta);
+  }
+  
+  /* Efeito glow para elementos */
+  .proia-glow {
+    box-shadow: var(--proia-shadow-glow);
+  }
+  .proia-glow-pink {
+    box-shadow: var(--proia-shadow-glow-pink);
+  }
+  .proia-glow-blue {
+    box-shadow: var(--proia-shadow-glow-blue);
+  }
+  .proia-glow-strong {
+    box-shadow: var(--proia-shadow-glow-strong);
+  }
+  
+  /* Logo específica para Hero */
+  .proia-logo-hero {
+    @apply relative;
+  }
+  
+  .proia-logo-hero img {
+    @apply transition-all duration-300;
+    object-fit: contain;
+  }
+  
+  .proia-logo-hero:hover img {
+    transform: scale(1.05);
+  }
+  
+  .proia-logo-hero:hover .absolute {
+    animation: proia-glow-strong 1.5s ease-in-out infinite alternate;
+  }
+  
+  /* CTA Button iOS-like */
+  .ios-cta-button {
+    @apply inline-flex items-center justify-center px-8 py-4 rounded-2xl font-bold text-lg text-white;
+    background: linear-gradient(135deg, var(--proia-roxao), var(--proia-ios-blue));
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 20px rgba(0, 122, 255, 0.6);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  }
+  
+  .ios-cta-button:active {
     transform: scale(0.97);
+    box-shadow: 0 0 30px rgba(0, 122, 255, 0.8);
+  }
+  
+  .ios-cta-button:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 25px rgba(0, 122, 255, 0.7);
+  }
+
+  /* =========================
+     iOS Navbar
+     ========================= */
+  .ios-navbar {
+    @apply fixed top-0 left-0 right-0 z-40;
+    background: rgba(27, 19, 48, 0.9);
+    backdrop-filter: blur(8px) saturate(120%);
+    -webkit-backdrop-filter: blur(8px) saturate(120%);
+    border-bottom: 1px solid rgba(0, 122, 255, 0.2);
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .ios-navbar-content {
+    @apply flex items-center justify-center px-6 py-4;
+  }
+
+  .ios-navbar-title {
+    @apply text-xl font-semibold;
+    color: var(--proia-ios-white);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  }
+
+  /* =========================
+     iOS Content
+     ========================= */
+  .ios-content {
+    @apply min-h-screen;
+    padding-top: calc(env(safe-area-inset-top) + 4rem);
+    padding-bottom: calc(env(safe-area-inset-bottom) + 5rem);
+  }
+
+  /* =========================
+     iOS Card Components
+     ========================= */
+  .ios-card {
+    @apply rounded-2xl p-6;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px) saturate(120%);
+    -webkit-backdrop-filter: blur(8px) saturate(120%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+  }
+
+  .ios-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .ios-card-header {
+    @apply mb-4;
+  }
+
+  .ios-card-title {
+    @apply text-lg font-semibold;
+    color: var(--proia-ios-white);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  }
+
+  .ios-card-content {
+    @apply space-y-3;
+  }
+
+  .ios-text {
+    color: var(--proia-ios-white);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  }
+
+  .ios-text-secondary {
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  }
+
+  /* =========================
+     iOS Contact Links
+     ========================= */
+  .ios-contact-link {
+    @apply flex items-center p-3 rounded-xl transition-all duration-300;
+    color: var(--proia-ios-white);
+    background: rgba(255, 255, 255, 0.05);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  }
+
+  .ios-contact-link:active {
+    transform: scale(0.95);
+    background: rgba(0, 122, 255, 0.2);
+  }
+
+  .ios-contact-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* =========================
+     iOS VIP Components
+     ========================= */
+  .ios-card-vip {
+    @apply rounded-2xl p-8 text-center relative overflow-hidden;
+    background: linear-gradient(135deg, var(--proia-roxao), var(--proia-ios-blue));
+    box-shadow: 0 20px 40px rgba(0, 122, 255, 0.3);
+  }
+
+  .ios-vip-badge {
+    @apply inline-block px-4 py-2 rounded-full text-sm font-bold mb-4;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    color: #1f2937;
+    transform: rotate(-5deg);
+  }
+
+  .ios-card-vip-title {
+    @apply text-2xl font-bold mb-2;
+    color: var(--proia-ios-white);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  }
+
+  .ios-card-vip-subtitle {
+    @apply text-lg;
+    color: rgba(255, 255, 255, 0.8);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  }
+
+  .ios-benefit-item {
+    @apply flex items-start gap-4;
+  }
+
+  .ios-benefit-icon {
+    @apply w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1;
+  }
+
+  .ios-benefit-title {
+    @apply text-lg font-semibold mb-1;
+    color: var(--proia-ios-white);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  }
+
+  .ios-benefit-description {
+    @apply text-sm;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  }
+
+  /* =========================
+     iOS Pricing Components
+     ========================= */
+  .ios-card-pricing {
+    @apply rounded-2xl p-8 text-center;
+    background: linear-gradient(135deg, var(--proia-ios-blue), var(--proia-neon-blue));
+    box-shadow: 0 20px 40px rgba(0, 122, 255, 0.3);
+  }
+
+  .ios-pricing-header {
+    @apply mb-6;
+  }
+
+  .ios-pricing-amount {
+    @apply text-4xl font-bold mb-2;
+    color: var(--proia-ios-white);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  }
+
+  .ios-pricing-label {
+    @apply text-sm;
+    color: rgba(255, 255, 255, 0.8);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  }
+
+  .ios-pricing-roi {
+    @apply bg-white/20 rounded-xl p-4 mb-6;
+  }
+
+  .ios-pricing-roi-label {
+    @apply text-sm mb-1;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  }
+
+  .ios-pricing-roi-value {
+    @apply text-xl font-bold;
+    color: var(--proia-ios-white);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  }
+
+  .ios-btn-vip {
+    @apply w-full py-4 px-8 rounded-2xl font-bold text-lg transition-all duration-300;
+    background: linear-gradient(135deg, var(--proia-neon-pink), var(--proia-neon-blue));
+    color: var(--proia-ios-white);
+    box-shadow: 0 8px 32px rgba(255, 45, 172, 0.4);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  }
+
+  .ios-btn-vip:active {
+    transform: scale(0.95);
+    box-shadow: 0 4px 16px rgba(255, 45, 172, 0.6);
+  }
+
+  .ios-pricing-note {
+    @apply mt-4 text-xs;
+    color: rgba(255, 255, 255, 0.8);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  }
+
+  /* =========================
+     iOS Testimonial
+     ========================= */
+  .ios-testimonial {
+    @apply text-sm italic mb-4;
+    color: rgba(255, 255, 255, 0.8);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  }
+
+  .ios-testimonial-author {
+    @apply flex items-center justify-center gap-2;
+  }
+
+  .ios-avatar {
+    @apply w-6 h-6 rounded-full;
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  .ios-author-name {
+    @apply text-sm font-medium;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  }
+
+  /* =========================
+     iOS Transitions
+     ========================= */
+  
+  /* Transição horizontal iOS */
+  .ios-slide-enter-active,
+  .ios-slide-leave-active {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+  }
+  
+  .ios-slide-enter-from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  
+  .ios-slide-leave-to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  
+  /* Conteúdo principal com padding para bottom bar */
+  .ios-content {
+    @apply min-h-screen;
+    padding-bottom: 80px; /* Altura do bottom bar */
+  }
+  
+  /* Ajuste para desktop */
+  @media (min-width: 1024px) {
+    .ios-content {
+      padding-bottom: 0;
+      padding-left: 80px; /* Largura do sidebar */
+    }
   }
 
   /* Background iOS light glassmorphism */
@@ -1473,6 +2040,109 @@ body {
   animation: glitch-2 0.5s infinite;
   color: #00ff00;
   z-index: -2;
+}
+
+/* =========================
+   iOS Glitch Premium (Nova classe)
+   ========================= */
+.ios-glitch-premium {
+  position: relative;
+  display: inline-block;
+  color: var(--proia-neon-pink);
+  text-shadow: 
+    0 0 10px var(--proia-neon-pink),
+    0 0 20px var(--proia-neon-blue),
+    0 0 30px var(--proia-neon-purple);
+  animation: proia-glitch-premium 2s ease-in-out infinite;
+}
+
+.ios-glitch-premium::before,
+.ios-glitch-premium::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+.ios-glitch-premium::before {
+  animation: proia-glitch-premium-1 1.5s infinite;
+  color: var(--proia-neon-pink);
+  z-index: -1;
+  transform: translate(-2px, 1px);
+}
+
+.ios-glitch-premium::after {
+  animation: proia-glitch-premium-2 1.8s infinite;
+  color: var(--proia-neon-blue);
+  z-index: -2;
+  transform: translate(2px, -1px);
+}
+
+@keyframes proia-glitch-premium {
+  0%, 100% {
+    text-shadow: 
+      0 0 10px var(--proia-neon-pink),
+      0 0 20px var(--proia-neon-blue),
+      0 0 30px var(--proia-neon-purple);
+  }
+  50% {
+    text-shadow: 
+      0 0 15px var(--proia-neon-blue),
+      0 0 25px var(--proia-neon-purple),
+      0 0 35px var(--proia-neon-pink);
+  }
+}
+
+@keyframes proia-glitch-premium-1 {
+  0%, 100% {
+    transform: translate(-2px, 1px);
+    opacity: 0.8;
+  }
+  25% {
+    transform: translate(1px, -2px);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-1px, 2px);
+    opacity: 0.9;
+  }
+  75% {
+    transform: translate(2px, -1px);
+    opacity: 0.7;
+  }
+}
+
+@keyframes proia-glitch-premium-2 {
+  0%, 100% {
+    transform: translate(2px, -1px);
+    opacity: 0.8;
+  }
+  25% {
+    transform: translate(-1px, 2px);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(1px, -2px);
+    opacity: 0.9;
+  }
+  75% {
+    transform: translate(-2px, 1px);
+    opacity: 0.7;
+  }
+}
+
+@keyframes proia-grid-pulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.02);
+  }
 }
 
 @keyframes glitch-1 {

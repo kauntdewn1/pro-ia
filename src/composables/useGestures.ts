@@ -1,6 +1,10 @@
 import { ref } from 'vue'
 import { logDebug } from '../utils/logger'
 
+/**
+ * Composable para gerenciar gestos nativos iOS
+ * Inclui swipe back, swipe forward e pull-to-refresh
+ */
 export function useGestures() {
   const startX = ref(0)
   const startY = ref(0)
@@ -9,6 +13,10 @@ export function useGestures() {
   const isDragging = ref(false)
   const threshold = 50 // Mínimo de pixels para ativar gesto
 
+  /**
+   * Habilita o gesto de swipe back (deslizar para voltar)
+   * @returns Função de cleanup para remover event listeners
+   */
   const enableSwipeBack = () => {
     const handleTouchStart = (e: TouchEvent) => {
       if (e.touches && e.touches.length === 1) {
@@ -76,12 +84,20 @@ export function useGestures() {
     }
   }
 
+  /**
+   * Habilita o gesto de swipe forward (deslizar para frente)
+   * @returns Função de cleanup para remover event listeners
+   */
   const enableSwipeForward = () => {
     // Similar ao swipe back, mas para frente
     // Implementação básica - pode ser expandida
     logDebug('Swipe forward habilitado')
   }
 
+  /**
+   * Habilita o gesto de pull-to-refresh (puxar para atualizar)
+   * @returns Função de cleanup para remover event listeners
+   */
   const enablePullToRefresh = () => {
     let startY = 0
     let currentY = 0

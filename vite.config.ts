@@ -61,7 +61,7 @@ export default defineConfig({
         cleanupOutdatedCaches: true
       },
       devOptions: {
-        enabled: true, // deixa PWA funcionando no dev server
+        enabled: false, // desabilita PWA no dev server para evitar conflitos
         suppressWarnings: true
       }
     })

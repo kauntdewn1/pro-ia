@@ -1,50 +1,83 @@
 <template>
-  <section class="relative min-h-screen flex flex-col items-center justify-center px-6 py-20 ios-dynamic-bg text-center">
+  <section 
+    class="relative min-h-screen flex flex-col items-center justify-center px-6 py-20 ios-dynamic-bg text-center" 
+    style="padding-top: max(5rem, env(safe-area-inset-top) + 2rem);"
+  >
+    <!-- Background Glassmorphism -->
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-900/20 via-purple-900/10 to-blue-900/20 backdrop-blur-sm"></div>
+    
     <!-- Conteúdo -->
-    <div class="relative z-10 max-w-3xl space-y-8">
-      <h1 class="font-bold text-4xl md:text-6xl ios-text-primary leading-tight">
-        O mercado <span class="ios-glitch gradient-text" data-text="mudou.">mudou.</span>
+    <div class="relative z-10 max-w-2xl space-y-8">
+      <!-- Logo PRO.IA com Halo Neon -->
+      <div class="flex justify-center mb-12">
+        <div class="relative proia-logo-hero">
+          <!-- Halo neon suave -->
+          <div class="absolute inset-0 rounded-full bg-gradient-to-br from-purple-500/30 via-pink-500/20 to-cyan-500/30 blur-3xl animate-pulse"></div>
+          
+          <!-- Logo image -->
+          <img 
+            src="/logo/LOGO.png"
+            alt="PRO.IA — Transforme IA em Faturamento"
+            class="relative w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 drop-shadow-2xl"
+          />
+        </div>
+      </div>
+
+      <!-- Headline iOS-like -->
+      <h1 class="font-extrabold text-4xl md:text-6xl leading-tight">
+        <span class="bg-gradient-to-r from-purple-600 via-blue-500 to-cyan-400 bg-clip-text text-transparent">
+          O mercado
+        </span>
+        <!-- Aqui entra o glitch refinado -->
+        <span class="ios-glitch-premium" data-text="mudou.">mudou.</span>
       </h1>
 
-      <p class="text-lg md:text-xl ios-text-secondary leading-relaxed">
+      <!-- Subheadline -->
+      <p class="text-lg md:text-xl ios-text-secondary leading-relaxed max-w-2xl mx-auto">
         Quem aprender a transformar <span class="text-ios-blue font-semibold">IA em faturamento</span> agora vai liderar a próxima década.  
         Não é promessa mágica. É método validado, rápido e direto para gerar seus primeiros resultados — mesmo que você nunca tenha vendido nada online.
       </p>
 
-      <div>
+      <!-- CTA Button -->
+      <div class="pt-4">
         <button
           @click="scrollToNext"
-          class="ios-btn ios-tap-feedback px-10 py-4 text-lg font-semibold"
+          class="ios-cta-button"
         >
           Quero o Guia Agora
         </button>
       </div>
 
       <!-- Trust indicators -->
-      <div class="flex flex-wrap justify-center gap-6 text-sm mt-10 ios-text-secondary">
-        <div class="flex items-center gap-2">
-          <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-          <span>Método validado</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <span class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
-          <span>Resultados em 72h</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <span class="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></span>
-          <span>Zero conhecimento técnico</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <span class="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></span>
-          <span>Auto-adapta ao tema do sistema</span>
+      <div class="ios-card mt-12 p-6">
+        <div class="grid grid-cols-2 gap-4 md:flex md:justify-center md:gap-8 text-sm ios-text-secondary">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+            <span>Método validado</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+            <span>Resultados em 72h</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></span>
+            <span>Zero conhecimento técnico</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></span>
+            <span>Auto-adapta ao tema do sistema</span>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Scroll indicator -->
-    <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2">
-      <div class="w-6 h-10 border-2 rounded-full flex justify-center ios-scroll-indicator">
-        <div class="w-1 h-3 rounded-full mt-2 animate-bounce ios-scroll-indicator"></div>
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+      <div class="flex flex-col items-center space-y-2 text-ios-blue/60">
+        <span class="text-xs font-medium">Deslize para explorar</span>
+        <div class="w-6 h-8 border border-ios-blue/30 rounded-full flex justify-center">
+          <div class="w-1 h-2 bg-ios-blue/60 rounded-full mt-1.5 animate-bounce"></div>
+        </div>
       </div>
     </div>
   </section>
