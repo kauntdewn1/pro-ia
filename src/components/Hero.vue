@@ -1,20 +1,17 @@
 <template>
   <section 
-    class="relative min-h-screen flex flex-col items-center justify-center px-6 py-20 ios-dynamic-bg text-center" 
+    class="relative min-h-screen flex flex-col items-center justify-center px-6 py-20 bg-black text-center" 
     style="padding-top: max(5rem, env(safe-area-inset-top) + 2rem);"
   >
-    <!-- Background Glassmorphism -->
-    <div class="absolute inset-0 bg-gradient-to-br from-slate-900/20 via-purple-900/10 to-blue-900/20 backdrop-blur-sm"></div>
+    <!-- Background Glow Overlay (sutil, sem grid) -->
+    <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-fuchsia-800/10 to-cyan-900/20"></div>
     
     <!-- Conteúdo -->
     <div class="relative z-10 max-w-2xl space-y-8">
       <!-- Logo PRO.IA com Halo Neon -->
       <div class="flex justify-center mb-12">
         <div class="relative proia-logo-hero">
-          <!-- Halo neon suave -->
           <div class="absolute inset-0 rounded-full bg-gradient-to-br from-purple-500/30 via-pink-500/20 to-cyan-500/30 blur-3xl animate-pulse"></div>
-          
-          <!-- Logo image -->
           <img 
             src="/logo/LOGO.png"
             alt="PRO.IA — Transforme IA em Faturamento"
@@ -23,12 +20,11 @@
         </div>
       </div>
 
-      <!-- Headline iOS-like -->
+      <!-- Headline -->
       <h1 class="font-extrabold text-4xl md:text-6xl leading-tight">
         <span class="bg-gradient-to-r from-purple-600 via-blue-500 to-cyan-400 bg-clip-text text-transparent">
           O mercado
         </span>
-        <!-- Aqui entra o glitch refinado -->
         <span class="ios-glitch-premium" data-text="mudou.">mudou.</span>
       </h1>
 
@@ -38,17 +34,14 @@
         Não é promessa mágica. É método validado, rápido e direto para gerar seus primeiros resultados — mesmo que você nunca tenha vendido nada online.
       </p>
 
-      <!-- CTA Button -->
+      <!-- CTA -->
       <div class="pt-4">
-        <button
-          @click="scrollToNext"
-          class="ios-cta-button"
-        >
+        <button @click="scrollToNext" class="ios-cta-button">
           Quero o Guia Agora
         </button>
       </div>
 
-      <!-- Trust indicators -->
+      <!-- Trust Indicators -->
       <div class="ios-card mt-12 p-6">
         <div class="grid grid-cols-2 gap-4 md:flex md:justify-center md:gap-8 text-sm ios-text-secondary">
           <div class="flex items-center gap-2">
