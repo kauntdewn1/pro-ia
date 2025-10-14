@@ -1,14 +1,13 @@
 {
-  "name": "ogm-system",
+  "name": "pro-ia",
   "version": "1.0.0",
-  "description": "Sistema mais lucrativo do submundo digital",
+  "description": "Manual rápido para usar IA de forma prática, com ferramentas e links.",
   "private": true,
   "scripts": {
     "dev": "next dev -p 3001",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "export": "next export",
     "serve": "npx serve out"
   },
   "dependencies": {
