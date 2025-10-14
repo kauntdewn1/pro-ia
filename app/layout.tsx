@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 
@@ -49,10 +49,13 @@ export const metadata: Metadata = {
     icon: '/favicon.ico',
     apple: '/apple-touch-icon.png',
   },
-  themeColor: '#00FF00',
   alternates: {
     canonical: 'https://www.ogmframe.online',
   },
+}
+
+export const viewport: Viewport = {
+  themeColor: '#00FF00',
 }
 
 export default function RootLayout({
