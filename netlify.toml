@@ -1,6 +1,9 @@
 [build]
-  publish = "dist"
-  command = "npm run build"
+  publish = "out"
+  command = "npm run build && npm run export"
+
+[build.environment]
+  NODE_VERSION = "20"
 
 [[redirects]]
   from = "/*"
