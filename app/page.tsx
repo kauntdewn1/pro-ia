@@ -341,16 +341,12 @@ export default function HomePage() {
 
 
 
-          {/* Botão principal */}
+          {/* Botão principal - DESATIVADO */}
           <button 
-            className="gap-2 whitespace-nowrap disabled:pointer-events-none disabled:opacity-50 bg-gradient-to-r from-green-400 via-green-500 to-green-400 hover:from-green-500 hover:via-green-600 hover:to-green-500 text-black font-black px-6 sm:px-12 md:px-16 py-3 sm:py-6 md:py-8 text-sm sm:text-xl md:text-2xl w-full transform hover:scale-105 transition-all duration-300 shadow-2xl shadow-green-500/70 border-2 sm:border-4 border-green-300 relative overflow-hidden min-h-[60px] sm:min-h-[90px] md:min-h-[100px] inline-flex items-center justify-center rounded-xl"
-            style={{
-              animation: 'pulse 1s infinite, glow 1s ease-in-out infinite alternate',
-              textShadow: '0 2px 4px rgba(0,0,0,0.3)'
-            }}
-            onClick={startForm}
+            className="gap-2 whitespace-nowrap pointer-events-none opacity-50 bg-gradient-to-r from-gray-400 via-gray-500 to-gray-400 text-gray-600 font-black px-6 sm:px-12 md:px-16 py-3 sm:py-6 md:py-8 text-sm sm:text-xl md:text-2xl w-full border-2 sm:border-4 border-gray-300 relative overflow-hidden min-h-[60px] sm:min-h-[90px] md:min-h-[100px] inline-flex items-center justify-center rounded-xl cursor-not-allowed"
+            disabled
           >
-            🔓 DESBLOQUEAR SISTEMA
+            🔒 SISTEMA BLOQUEADO
           </button>
 
         </div>
@@ -370,7 +366,7 @@ export default function HomePage() {
           
           <div className="text-green-400 text-xs sm:text-sm font-mono">
             <div>&gt; PRO.IA © 2025 - Todos os direitos reservados</div>
-            <div>&gt; Powered by NEØ PROTOCOL</div>
+            <div>&gt; Powered by NEØ-FLOWOFF</div> flowoff.xyz 
           </div>
         </div>
       </footer>
