@@ -159,15 +159,13 @@ export default function Forms({ onComplete }: FormsProps) {
     setXp(0)
   }
 
-  if (currentStep === 0) {
-    return null // Não renderiza nada quando não está ativo
-  }
+  // Removido o return null para permitir que o formulário apareça
 
   if (currentStep > questions.length) {
     return null // Formulário completo
   }
 
-  const currentQuestion = questions[currentStep - 1]
+  const currentQuestion = questions[currentStep]
 
   return (
     <div className="bg-black border border-green-400 p-4 sm:p-6 lg:p-8 rounded-lg space-y-3 text-left text-sm sm:text-base lg:text-lg max-w-4xl mx-auto">
@@ -177,7 +175,7 @@ export default function Forms({ onComplete }: FormsProps) {
           {currentQuestion.title}
         </div>
         <div className="text-center text-sm text-white/80">
-          Pergunta {currentStep} de {questions.length}
+          Pergunta {currentStep + 1} de {questions.length}
         </div>
       </div>
 
@@ -185,7 +183,7 @@ export default function Forms({ onComplete }: FormsProps) {
       <div className="w-full bg-green-400/20 rounded-full h-2 mb-6">
         <div 
           className="bg-green-400 h-2 rounded-full transition-all duration-500 animate-pulse"
-          style={{ width: `${(currentStep / questions.length) * 100}%` }}
+          style={{ width: `${((currentStep + 1) / questions.length) * 100}%` }}
         ></div>
       </div>
 
