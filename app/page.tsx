@@ -28,44 +28,28 @@ export default function HomePage() {
   }
 
   // Função para tocar áudio do professor
-<<<<<<< Updated upstream
   const playProfessorAudio = useCallback(async () => {
-=======
-  const playProfessorAudio = useCallback(() => {
->>>>>>> Stashed changes
     const audio = professorAudioRef.current
     if (!audio) return
 
-    if (isPlayingSound) {
-      audio.pause()
-      audio.currentTime = 0
-      setIsPlayingSound(false)
-      return
+    try {
+      if (isPlayingSound) {
+        audio.pause()
+        audio.currentTime = 0
+        setIsPlayingSound(false)
+      } else {
+        await audio.play()
+        setIsPlayingSound(true)
+        audio.onended = () => setIsPlayingSound(false)
+      }
+    } catch (error) {
+      console.log('Erro ao reproduzir áudio:', error)
     }
-<<<<<<< Updated upstream
-=======
-    
-    const playPromise = audio.play()
-    if (playPromise !== undefined) {
-      playPromise
-        .then(() => {
-          setIsPlayingSound(true)
-          audio.onended = () => setIsPlayingSound(false)
-        })
-        .catch((error) => {
-          console.log('Erro ao reproduzir áudio:', error)
-        })
-    }
->>>>>>> Stashed changes
   }, [isPlayingSound])
 
   const handleProfessorAudioToggle = useCallback(() => {
     setHasInteracted(true)
-<<<<<<< Updated upstream
     void playProfessorAudio()
-=======
-    playProfessorAudio()
->>>>>>> Stashed changes
   }, [playProfessorAudio])
 
   // Efeito Matrix Canvas
@@ -137,42 +121,19 @@ export default function HomePage() {
 
     const handleFirstInteraction = () => {
       setHasInteracted(true)
-<<<<<<< Updated upstream
       audio.play().catch(() => {
         console.log('Áudio não pode ser reproduzido automaticamente')
       })
     }
 
     const interactionEvents: Array<keyof DocumentEventMap> = [
-=======
-      const playPromise = audio.play()
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            interactionEvents.forEach((eventName) => {
-              document.removeEventListener(eventName, handleFirstInteraction)
-            })
-          })
-          .catch(() => {
-            console.log('Áudio não pode ser reproduzido automaticamente')
-          })
-      }
-    }
-
-    const interactionEvents: Array<keyof DocumentEventMap> = [
-      'pointerdown',
->>>>>>> Stashed changes
       'click',
       'keydown',
       'touchstart',
     ]
 
     interactionEvents.forEach((eventName) => {
-<<<<<<< Updated upstream
       document.addEventListener(eventName, handleFirstInteraction, { once: true })
-=======
-      document.addEventListener(eventName, handleFirstInteraction)
->>>>>>> Stashed changes
     })
 
     return () => {
