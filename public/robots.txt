@@ -1,0 +1,25 @@
+User-agent: *
+Allow: /
+
+# Páginas principais
+Allow: /portal
+Allow: /resources
+Allow: /missions
+
+# Recursos PDFs
+Allow: /docs/
+
+# APIs (para crawlers que precisam)
+Allow: /api/resources
+Allow: /api/missions
+
+# Bloquear páginas sensíveis
+Disallow: /api/auth/
+Disallow: /protected
+Disallow: /admin
+
+# Sitemap
+Sitemap: https://proia.netlify.app/sitemap.xml
+
+# Crawl-delay para evitar sobrecarga
+Crawl-delay: 1

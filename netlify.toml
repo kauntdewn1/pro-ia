@@ -4,6 +4,10 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  JWT_SECRET = "pro-ia-secret-key-2025-production"
+
+[functions]
+  directory = "netlify/functions"
 
 [[redirects]]
   from = "/*"

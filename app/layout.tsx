@@ -8,20 +8,32 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://pro-ia.netlify.app/'),
+  metadataBase: new URL('https://proia.netlify.app/'),
   title: {
-    default: 'PRO.IA — NEØ Protocol',
+    default: 'PRO.IA - Transforme IA em Faturamento Real',
     template: '%s · PRO.IA',
   },
-  description: 'Manual rápido para usar IA de forma prática, com ferramentas e links.',
+  description: 'Sistema completo para usar Inteligência Artificial em vendas. Manual prático, templates testados, automação e missões gamificadas. Liberação baseada em XP.',
   generator: 'pro.ia.app',
-  keywords: ['pro.ia', 'como usar ia', 'ferramentas ia', 'links ia', 'inteligência artificial', 'neø protocol'],
-  authors: [{ name: 'NEØ PROTOCOL', url: 'https://neprotocol.com' }],
-  creator: 'NEØ PROTOCOL',
-  publisher: 'NEØ PROTOCOL',
+  keywords: [
+    'IA',
+    'Inteligência Artificial', 
+    'Vendas',
+    'Automação',
+    'ChatGPT',
+    'Prompts',
+    'Marketing Digital',
+    'Lead Generation',
+    'Conversão',
+    'PRO.IA',
+    'NEØ-FLOWOFF'
+  ],
+  authors: [{ name: 'NEØ-FLOWOFF' }],
+  creator: 'PRO.IA',
+  publisher: 'NEØ-FLOWOFF',
   openGraph: {
-    title: 'PRO.IA — NEØ Protocol',
-    description: 'Manual rápido para usar IA de forma prática, com ferramentas e links.',
+    title: 'PRO.IA - Transforme IA em Faturamento Real',
+    description: 'Sistema completo para usar Inteligência Artificial em vendas. Manual prático, templates testados e automação.',
     url: '/',
     siteName: 'PRO.IA',
     images: [

@@ -16,10 +16,57 @@ export default function HomePage() {
   const [hasInteracted, setHasInteracted] = useState(false)
 
   // Callback para quando o formulário for completado
-  const handleFormComplete = (answers: string[], xp: number) => {
+  const handleFormComplete = async (answers: string[], xp: number) => {
     setFinalXp(xp)
     setFormCompleted(true)
     setShowForm(false)
+    
+    try {
+      // Chamar API de login para gerar token
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: `user_${Date.now()}@proia.local`, // Email temporário
+          xp: xp,
+          answers: answers
+        })
+      })
+
+      const data = await response.json()
+      
+      if (data.success) {
+        // Token criado com sucesso
+        if (data.redirect) {
+          // Liberação completa - redirecionar para portal
+          setTimeout(() => {
+            window.location.href = data.redirect
+          }, 3000)
+        } else if (data.whatsapp) {
+          // Liberação parcial - mostrar WhatsApp
+          setTimeout(() => {
+            window.open(data.whatsapp.url, '_blank')
+          }, 3000)
+        }
+      }
+    } catch (error) {
+      console.error('Erro ao processar liberação:', error)
+      // Fallback para o comportamento anterior
+      if (xp >= 200) {
+        setTimeout(() => {
+          window.location.href = '/portal'
+        }, 3000)
+      } else if (xp >= 100) {
+        setTimeout(() => {
+          const whatsappMessage = encodeURIComponent(
+            `Quero liberação no Portal PRO.IA - XP: ${xp} pontos`
+          )
+          window.open(`https://wa.me/5562983231110?text=${whatsappMessage}`, '_blank')
+        }, 3000)
+      }
+    }
   }
 
   // Função para iniciar o formulário
@@ -405,8 +452,26 @@ export default function HomePage() {
               XP Total: {finalXp} pontos
             </div>
             <div className="text-green-400 text-lg mb-8">
-              Você completou todas as perguntas! O sistema está pronto para ser usado.
+              {finalXp >= 200 ? 
+                "🎉 Liberação completa! Redirecionando para o Portal..." :
+                finalXp >= 100 ?
+                "✅ Liberação parcial! Abrindo WhatsApp para finalizar..." :
+                "📞 Entre em contato via WhatsApp para liberação manual"
+              }
             </div>
+            {finalXp < 200 && (
+              <button
+                onClick={() => {
+                  const whatsappMessage = encodeURIComponent(
+                    `Quero liberação no Portal PRO.IA - XP: ${finalXp} pontos`
+                  )
+                  window.open(`https://wa.me/5562983231110?text=${whatsappMessage}`, '_blank')
+                }}
+                className="bg-green-400 text-black px-8 py-3 rounded-lg font-bold hover:bg-green-500 transition-colors mr-4"
+              >
+                📱 WhatsApp
+              </button>
+            )}
             <button
               onClick={() => {
                 setFormCompleted(false)
