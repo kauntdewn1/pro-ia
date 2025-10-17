@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import Forms from './components/forms'
 
 export default function HomePage() {
@@ -13,6 +13,7 @@ export default function HomePage() {
   const [displayedText, setDisplayedText] = useState('')
   const [showCursor, setShowCursor] = useState(false)
   const [isPlayingSound, setIsPlayingSound] = useState(false)
+  const [hasInteracted, setHasInteracted] = useState(false)
 
   // Callback para quando o formulário for completado
   const handleFormComplete = (answers: string[], xp: number) => {
@@ -27,7 +28,7 @@ export default function HomePage() {
   }
 
   // Função para tocar áudio do professor
-  const playProfessorAudio = async () => {
+  const playProfessorAudio = useCallback(async () => {
     const audio = professorAudioRef.current
     if (!audio) return
 
@@ -44,7 +45,12 @@ export default function HomePage() {
     } catch (error) {
       console.log('Erro ao reproduzir áudio:', error)
     }
-  }
+  }, [isPlayingSound])
+
+  const handleProfessorAudioToggle = useCallback(() => {
+    setHasInteracted(true)
+    void playProfessorAudio()
+  }, [playProfessorAudio])
 
   // Efeito Matrix Canvas
   useEffect(() => {
@@ -102,29 +108,39 @@ export default function HomePage() {
     const audio = audioRef.current
     if (!audio) return
 
-    const loadAudio = async () => {
+    const prepareAudio = async () => {
       try {
         await audio.load()
         audio.volume = 0.15
-        
-        // Tentar reproduzir após interação do usuário
-        const playAudio = () => {
-          audio.play().catch(() => {
-            console.log('Áudio não pode ser reproduzido automaticamente')
-          })
-        }
-        
-        // Adicionar listeners para primeira interação
-        document.addEventListener('click', playAudio, { once: true })
-        document.addEventListener('keydown', playAudio, { once: true })
-        document.addEventListener('touchstart', playAudio, { once: true })
-        
       } catch (error) {
         console.log('Erro ao carregar áudio:', error)
       }
     }
 
-    loadAudio()
+    void prepareAudio()
+
+    const handleFirstInteraction = () => {
+      setHasInteracted(true)
+      audio.play().catch(() => {
+        console.log('Áudio não pode ser reproduzido automaticamente')
+      })
+    }
+
+    const interactionEvents: Array<keyof DocumentEventMap> = [
+      'click',
+      'keydown',
+      'touchstart',
+    ]
+
+    interactionEvents.forEach((eventName) => {
+      document.addEventListener(eventName, handleFirstInteraction, { once: true })
+    })
+
+    return () => {
+      interactionEvents.forEach((eventName) => {
+        document.removeEventListener(eventName, handleFirstInteraction)
+      })
+    }
   }, [])
 
   // Proteções de segurança
@@ -170,6 +186,8 @@ export default function HomePage() {
   // Detectar quando o usuário rola até a seção do professor
   useEffect(() => {
     const handleScroll = () => {
+      if (!hasInteracted) return
+
       const professorSection = document.getElementById('professor-section')
       if (!professorSection) return
 
@@ -178,13 +196,13 @@ export default function HomePage() {
       
       if (isVisible && !isPlayingSound) {
         // Auto-play quando a seção fica visível
-        playProfessorAudio()
+        void playProfessorAudio()
       }
     }
 
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [isPlayingSound])
+  }, [hasInteracted, isPlayingSound, playProfessorAudio])
 
   return (
     <div className="bg-black text-green-400 font-mono relative">
@@ -290,7 +308,7 @@ export default function HomePage() {
                 <div className="text-white/80 mt-3 text-sm sm:text-base flex items-center justify-center gap-2">
                   <span>::</span>
                   <button
-                    onClick={playProfessorAudio}
+                    onClick={handleProfessorAudioToggle}
                     className={`w-6 h-6 transition-all duration-300 hover:scale-110 cursor-pointer border border-green-400 rounded p-1 ${
                       isPlayingSound 
                         ? 'text-green-300 animate-pulse bg-green-400/20' 
