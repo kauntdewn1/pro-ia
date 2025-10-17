@@ -16,4 +16,4 @@
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Content-Security-Policy = "default-src 'self'; img-src * data: https:; style-src 'self' 'unsafe-inline' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval';"
+    Content-Security-Policy = "default-src 'self'; img-src * data: https:; style-src 'self' 'unsafe-inline' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval'; media-src 'self' https://hebbkx1anhila5yf.public.blob.vercel-storage.com;"
