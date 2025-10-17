@@ -359,12 +359,12 @@ export default function HomePage() {
 
 
 
-          {/* Botão principal - DESATIVADO */}
+          {/* Botão principal - LIBERADO */}
           <button 
-            className="gap-2 whitespace-nowrap pointer-events-none opacity-50 bg-gradient-to-r from-gray-400 via-gray-500 to-gray-400 text-gray-600 font-black px-6 sm:px-12 md:px-16 py-3 sm:py-6 md:py-8 text-sm sm:text-xl md:text-2xl w-full border-2 sm:border-4 border-gray-300 relative overflow-hidden min-h-[60px] sm:min-h-[90px] md:min-h-[100px] inline-flex items-center justify-center rounded-xl cursor-not-allowed"
-            disabled
+            onClick={startForm}
+            className="gap-2 whitespace-nowrap bg-gradient-to-r from-green-400 via-green-500 to-green-400 text-black font-black px-6 sm:px-12 md:px-16 py-3 sm:py-6 md:py-8 text-sm sm:text-xl md:text-2xl w-full border-2 sm:border-4 border-green-300 relative overflow-hidden min-h-[60px] sm:min-h-[90px] md:min-h-[100px] inline-flex items-center justify-center rounded-xl hover:from-green-300 hover:via-green-400 hover:to-green-300 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-green-400/50"
           >
-            🔒 SISTEMA BLOQUEADO
+            🚀 SISTEMA LIBERADO
           </button>
 
         </div>
