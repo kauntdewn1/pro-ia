@@ -66,12 +66,6 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={inter.variable}>
       <head>
-        <meta httpEquiv="X-Frame-Options" content="DENY" />
-        <meta httpEquiv="Content-Security-Policy" content="frame-ancestors 'none'" />
-        <meta name="referrer" content="no-referrer" />
-        <link rel="preconnect" href="https://connect.facebook.net" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://cdn.utmify.com.br" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://www.clarity.ms" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com" crossOrigin="anonymous" />
       </head>
       <body className="font-sans bg-black">
