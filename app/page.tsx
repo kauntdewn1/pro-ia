@@ -43,7 +43,7 @@ export default function HomePage() {
         audio.onended = () => setIsPlayingSound(false)
       }
     } catch (error) {
-      console.log('Erro ao reproduzir áudio:', error)
+      console.log('Erro ao reproduzir audio:', error)
     }
   }, [isPlayingSound])
 
@@ -113,7 +113,7 @@ export default function HomePage() {
         await audio.load()
         audio.volume = 0.15
       } catch (error) {
-        console.log('Erro ao carregar áudio:', error)
+        console.log('Erro ao carregar audio:', error)
       }
     }
 
@@ -122,7 +122,7 @@ export default function HomePage() {
     const handleFirstInteraction = () => {
       setHasInteracted(true)
       audio.play().catch(() => {
-        console.log('Áudio não pode ser reproduzido automaticamente')
+        console.log('Audio nao pode ser reproduzido automaticamente')
       })
     }
 
