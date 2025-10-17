@@ -16,6 +16,7 @@ export default function Forms({ onComplete }: FormsProps) {
   const [currentStep, setCurrentStep] = useState(0)
   const [answers, setAnswers] = useState<string[]>([])
   const [xp, setXp] = useState(0)
+  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null)
 
   // Perguntas do formulário
   const questions: Question[] = [
@@ -102,54 +103,55 @@ export default function Forms({ onComplete }: FormsProps) {
   ]
 
   const handleAnswer = (answer: string) => {
-    const newAnswers = [...answers, answer]
-    setAnswers(newAnswers)
+    setSelectedAnswer(answer)
     
-    // Sistema de XP baseado nas respostas
-    let xpGain = 0
-    if (currentStep === 0) {
-      if (answer === "Vendo todo dia mas quero escalar") xpGain = 50
-      else if (answer === "Fiz algumas vendas") xpGain = 30
-      else if (answer === "Tentei de tudo e não consegui") xpGain = 20
-      else xpGain = 10
-    } else if (currentStep === 1) {
-      if (answer === "Full-time, bora viver disso") xpGain = 50
-      else if (answer === "Nem sei, quero algo que rode sozinho") xpGain = 40
-      else if (answer === "2 a 3 horas por dia") xpGain = 30
+    // Pequeno delay para mostrar a seleção antes de avançar
+    setTimeout(() => {
+      const newAnswers = [...answers, answer]
+      setAnswers(newAnswers)
+      
+      // Sistema de XP baseado nas respostas corretas
+      let xpGain = 0
+      const currentQuestion = questions[currentStep]
+      
+      // XP baseado no índice da resposta (primeira opção = mais XP)
+      const answerIndex = currentQuestion.options.indexOf(answer)
+      if (answerIndex === 0) xpGain = 50
+      else if (answerIndex === 1) xpGain = 40
+      else if (answerIndex === 2) xpGain = 30
       else xpGain = 20
-    } else if (currentStep === 2) {
-      if (answer === "Sumir e lucrar calado") xpGain = 50
-      else if (answer === "Viver no ghost mode") xpGain = 40
-      else if (answer === "Copiar e vender já") xpGain = 30
-      else xpGain = 20
-    } else if (currentStep === 3) {
-      if (answer === "Sim, esse é o combo perfeito") xpGain = 50
-      else if (answer === "Claro, desde que seja automático") xpGain = 40
-      else if (answer === "Só se não precisar aparecer") xpGain = 30
-      else xpGain = 10
-    } else if (currentStep === 4) {
-      if (answer === "Investir e não ter retorno") xpGain = 40
-      else if (answer === "Não conseguir executar") xpGain = 30
-      else if (answer === "Ficar na mão de terceiros") xpGain = 20
-      else xpGain = 10
-    }
-    
-    setXp(prevXp => prevXp + xpGain)
-    
-    if (currentStep < questions.length - 1) {
-      setCurrentStep(currentStep + 1)
-    } else {
-      // Formulário completo
-      if (onComplete) {
-        onComplete(newAnswers, xp + xpGain)
+      
+      setXp(prevXp => prevXp + xpGain)
+      
+      if (currentStep < questions.length - 1) {
+        setCurrentStep(currentStep + 1)
+        setSelectedAnswer(null) // Limpar seleção para próxima pergunta
+      } else {
+        // Formulário completo - usar o XP total atualizado
+        if (onComplete) {
+          onComplete(newAnswers, xp + xpGain)
+        }
       }
-    }
+    }, 300)
   }
 
   const handleBack = () => {
     if (currentStep > 0) {
+      // Remover o XP da resposta anterior
+      const previousAnswer = answers[answers.length - 1]
+      const previousQuestion = questions[currentStep - 1]
+      const answerIndex = previousQuestion.options.indexOf(previousAnswer)
+      
+      let xpToRemove = 0
+      if (answerIndex === 0) xpToRemove = 50
+      else if (answerIndex === 1) xpToRemove = 40
+      else if (answerIndex === 2) xpToRemove = 30
+      else xpToRemove = 20
+      
+      setXp(prevXp => prevXp - xpToRemove)
       setCurrentStep(currentStep - 1)
       setAnswers(answers.slice(0, -1))
+      setSelectedAnswer(null) // Limpar seleção
     }
   }
 
@@ -157,6 +159,7 @@ export default function Forms({ onComplete }: FormsProps) {
     setCurrentStep(0)
     setAnswers([])
     setXp(0)
+    setSelectedAnswer(null) // Limpar seleção
   }
 
   // Removido o return null para permitir que o formulário apareça
@@ -199,10 +202,16 @@ export default function Forms({ onComplete }: FormsProps) {
             <button
               key={index}
               onClick={() => handleAnswer(option)}
-              className="w-full bg-black border border-green-400 p-4 rounded-lg text-left hover:bg-green-400 hover:text-black transition-all duration-300 hover:scale-105"
+              className={`w-full border p-4 rounded-lg text-left transition-all duration-300 hover:scale-105 ${
+                selectedAnswer === option
+                  ? 'bg-green-400 text-black border-green-300'
+                  : 'bg-black border-green-400 hover:bg-green-400 hover:text-black'
+              }`}
             >
               <div className="flex items-center">
-                <span className="w-2 h-2 bg-green-400 rounded-full mr-3"></span>
+                <span className={`w-2 h-2 rounded-full mr-3 ${
+                  selectedAnswer === option ? 'bg-black' : 'bg-green-400'
+                }`}></span>
                 {option}
               </div>
             </button>
