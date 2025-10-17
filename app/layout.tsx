@@ -8,7 +8,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.ogmframe.online'),
+  metadataBase: new URL('https://pro-ia.netlify.app/'),
   title: {
     default: 'PRO.IA — NEØ Protocol',
     template: '%s · PRO.IA',
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     apple: '/apple-touch-icon.png',
   },
   alternates: {
-    canonical: 'https://www.ogmframe.online',
+    canonical: 'https://pro-ia.netlify.app/',
   },
 }
 
