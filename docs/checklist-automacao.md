@@ -19,7 +19,7 @@ Automatizar processos de vendas para aumentar eficiência, reduzir custos e esca
 **📋 PROCESSO ATUAL MAPEADO:**
 
 - **Captura**: Instagram, WhatsApp, TikTok, YouTube Shorts + afiliados NEØ/FlowOFF
-- **Landing**: https://pro-ia.netlify.app/ (PWA glassmorphism)
+- **Landing**: <https://pro-ia.netlify.app/> (PWA glassmorphism)
 - **Triagem**: Formulário de avaliação → XP inicial
 - **Pagamento**: FlowPay checkout integrado
 - **Acesso**: WhatsApp automático → Portal (/portal, /resources, /missions, /admin)
@@ -52,6 +52,7 @@ Automatizar processos de vendas para aumentar eficiência, reduzir custos e esca
 - [x] Identificar stakeholders envolvidos
 
 **🎯 OBJETIVOS DEFINIDOS:**
+
 - **Automação**: Formulário → Pagamento → Acesso Portal (100% automático)
 - **Follow-up**: Disparo automático para não-conversão
 - **CRM**: Integração centralizada (Pipedrive/Hubspot/FlowPay)
@@ -60,12 +61,14 @@ Automatizar processos de vendas para aumentar eficiência, reduzir custos e esca
 - **Volume**: 500+ leads/mês com retargeting
 
 **📅 CRONOGRAMA:**
+
 - ✅ Mapeamento concluído
 - 🔄 Seleção ferramentas: 2 semanas
 - 🔄 Implementação: semanas 3-4
 - 🔄 Primeira revisão: semana 6
 
 **👥 STAKEHOLDERS:**
+
 - **Técnico**: MELLØ
 - **Infraestrutura**: FlowOFF/FlowPay
 - **Automação**: NEØ Core
