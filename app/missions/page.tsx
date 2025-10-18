@@ -2,11 +2,32 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { useRequireAuth } from '../../hooks/useAuth'
-import { Mission } from '../../types'
+
+interface Mission {
+  id: string
+  title: string
+  type: 'M1_PDF' | 'M2_CHAT' | 'M3_POST' | 'M4_VIDEO' | 'M5_QUIZ' | 'M6_TASK'
+  level: 'Basico' | 'Avancado' | 'Expert'
+  xp: number
+  status: 'Disponivel' | 'Em progresso' | 'Concluida' | 'Bloqueada'
+  requirements: string[]
+  validation: {
+    evidence?: string[]
+    rubric?: string
+    quiz?: {
+      questions: Array<{
+        question: string
+        options: string[]
+        correct: number
+      }>
+      min_score: number
+    }
+  }
+  unlocked_resources?: string[]
+  created_at: string
+}
 
 export default function MissionsPage() {
-  const { user, loading } = useRequireAuth('/')
   const [missions, setMissions] = useState<Mission[]>([])
   const [filteredMissions, setFilteredMissions] = useState<Mission[]>([])
   const [filters, setFilters] = useState({
@@ -15,21 +36,71 @@ export default function MissionsPage() {
   })
   const [selectedMission, setSelectedMission] = useState<Mission | null>(null)
   const [showModal, setShowModal] = useState(false)
+  const [user, setUser] = useState<any>(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    if (user) {
-      loadMissions()
-    }
-  }, [user])
+    // Simular usuário logado
+    setUser({
+      email: 'user@proia.local',
+      xp: 250,
+      level: 'expert'
+    })
+    
+    // Carregar missões mockadas
+    loadMissions()
+    setLoading(false)
+  }, [])
 
   const loadMissions = async () => {
     try {
-      const response = await fetch(`/api/missions?user_id=${user?.email}`)
+      const response = await fetch('/api/missions')
       const data = await response.json()
       setMissions(data.missions)
       setFilteredMissions(data.missions)
     } catch (error) {
       console.error('Erro ao carregar missões:', error)
+      // Fallback com dados mockados
+      const mockMissions: Mission[] = [
+        {
+          id: 'm1_pdf_001',
+          title: 'Primeiro PDF - Manual PRO.IA',
+          type: 'M1_PDF',
+          level: 'Basico',
+          xp: 50,
+          status: 'Disponivel',
+          requirements: [
+            'Baixar o PDF do Manual PRO.IA',
+            'Ler o conteúdo completo',
+            'Responder o quiz de validação'
+          ],
+          validation: {
+            evidence: ['download_confirmed'],
+            rubric: 'Usuário deve confirmar download e responder quiz'
+          },
+          created_at: '2025-01-15T12:00:00Z'
+        },
+        {
+          id: 'm2_chat_001',
+          title: 'Primeiro Prompt Executável',
+          type: 'M2_CHAT',
+          level: 'Basico',
+          xp: 30,
+          status: 'Disponivel',
+          requirements: [
+            'Acessar GPT PRO.IA com link indicado',
+            'Executar um prompt de vendas',
+            'Enviar screenshot do resultado'
+          ],
+          validation: {
+            evidence: ['screenshot_url'],
+            rubric: 'Screenshot deve mostrar prompt e resposta do GPT'
+          },
+          created_at: '2025-01-15T12:00:00Z'
+        }
+      ]
+      setMissions(mockMissions)
+      setFilteredMissions(mockMissions)
     }
   }
 

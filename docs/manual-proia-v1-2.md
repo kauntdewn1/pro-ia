@@ -1,6 +1,7 @@
 # PRO.IA - Manual Completo v1.2
 
 ## Índice
+
 1. [Introdução](#introdução)
 2. [Sistema de Liberação](#sistema-de-liberação)
 3. [Recursos Disponíveis](#recursos-disponíveis)

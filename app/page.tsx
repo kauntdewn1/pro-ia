@@ -406,6 +406,31 @@ export default function HomePage() {
 
 
 
+          {/* Seção Comet Browser */}
+          <div className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-blue-400/30 rounded-2xl p-6 sm:p-8 max-w-4xl mx-auto mb-8 backdrop-blur-xl">
+            <div className="text-center space-y-4">
+              <div className="text-blue-400 font-mono text-lg sm:text-xl animate-pulse">
+                &gt; BROWSER RECOMENDADO: COMET
+              </div>
+              <div className="text-white/90 text-sm sm:text-base lg:text-lg">
+                O navegador dos sonhos para desenvolvedores e criadores de IA
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a 
+                  href="https://pplx.ai/neo_protocol" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold px-8 py-4 rounded-xl hover:from-blue-400 hover:to-purple-500 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-blue-400/50 inline-flex items-center gap-2"
+                >
+                  🌟 BAIXAR COMET BROWSER
+                </a>
+                <div className="text-blue-300 text-xs sm:text-sm font-mono">
+                  &gt; Powered by NEØ Protocol
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Botão principal - LIBERADO */}
           <button 
             onClick={startForm}
@@ -432,6 +457,16 @@ export default function HomePage() {
           <div className="text-green-400 text-xs sm:text-sm font-mono">
             <div>&gt; PRO.IA © 2025 - Todos os direitos reservados</div>
             <div>&gt; Powered by NEØ-FLOWOFF</div> flowoff.xyz 
+            <div className="mt-2 text-blue-400">
+              <a 
+                href="https://pplx.ai/neo_protocol" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:text-blue-300 transition-colors"
+              >
+                &gt; Browser recomendado: Comet Browser
+              </a>
+            </div>
           </div>
         </div>
       </footer>

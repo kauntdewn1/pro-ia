@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     default: 'PRO.IA - Transforme IA em Faturamento Real',
     template: '%s · PRO.IA',
   },
-  description: 'Sistema completo para usar Inteligência Artificial em vendas. Manual prático, templates testados, automação e missões gamificadas. Liberação baseada em XP.',
+  description: 'Sistema completo para usar Inteligência Artificial em vendas. Manual prático, templates testados, automação e missões gamificadas. Liberação baseada em XP. Recomendamos o Comet Browser para melhor experiência.',
   generator: 'pro.ia.app',
   keywords: [
     'IA',
@@ -26,7 +26,10 @@ export const metadata: Metadata = {
     'Lead Generation',
     'Conversão',
     'PRO.IA',
-    'NEØ-FLOWOFF'
+    'NEØ-FLOWOFF',
+    'Comet Browser',
+    'Browser IA',
+    'Navegador IA'
   ],
   authors: [{ name: 'NEØ-FLOWOFF' }],
   creator: 'PRO.IA',

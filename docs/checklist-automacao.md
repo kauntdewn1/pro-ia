@@ -56,6 +56,7 @@ Automatizar processos de vendas para aumentar eficiência, reduzir custos e esca
   - [ ] Notificações automáticas
 
 ### 2.2 Pesquisa e Comparação
+
 - [ ] Listar 3-5 opções por categoria
 - [ ] Comparar preços e funcionalidades
 - [ ] Verificar integrações disponíveis
@@ -63,6 +64,7 @@ Automatizar processos de vendas para aumentar eficiência, reduzir custos e esca
 - [ ] Testar versões gratuitas/trial
 
 ### 2.3 Decisão e Contratação
+
 - [ ] Escolher ferramentas principais
 - [ ] Negociar preços e condições
 - [ ] Assinar contratos
@@ -74,6 +76,7 @@ Automatizar processos de vendas para aumentar eficiência, reduzir custos e esca
 ## ⚙️ FASE 3: IMPLEMENTAÇÃO (Semana 3-4)
 
 ### 3.1 Configuração Inicial
+
 - [ ] Importar dados existentes
 - [ ] Configurar campos personalizados
 - [ ] Definir regras de negócio
@@ -81,6 +84,7 @@ Automatizar processos de vendas para aumentar eficiência, reduzir custos e esca
 - [ ] Testar funcionalidades básicas
 
 ### 3.2 Automações Básicas
+
 - [ ] **Captura de Leads**
   - [ ] Formulários de contato
   - [ ] Landing pages
@@ -100,6 +104,7 @@ Automatizar processos de vendas para aumentar eficiência, reduzir custos e esca
   - [ ] Alertas de leads quentes
 
 ### 3.3 Automações Avançadas
+
 - [ ] **Nurturing de Leads**
   - [ ] Campanhas por segmento
   - [ ] Conteúdo personalizado
@@ -117,6 +122,7 @@ Automatizar processos de vendas para aumentar eficiência, reduzir custos e esca
 ## 📊 FASE 4: MONITORAMENTO (Semana 5-6)
 
 ### 4.1 Métricas de Performance
+
 - [ ] **Leads**
   - [ ] Volume de leads gerados
   - [ ] Taxa de conversão por fonte

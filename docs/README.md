@@ -16,7 +16,7 @@ O PRO.IA é um sistema completo para transformar Inteligência Artificial em fat
 
 1. Complete o formulário de avaliação
 2. Ganhe XP baseado nas suas respostas
-3. Acesse recursos conforme seu nível
+3. Acesse recursos, depois do pagamento, conforme seu nível
 4. Complete missões para desbloquear mais conteúdo
 
 ## 📋 Recursos Disponíveis
@@ -60,12 +60,14 @@ O PRO.IA é um sistema completo para transformar Inteligência Artificial em fat
 ## 🔐 Autenticação e Segurança
 
 ### Sistema JWT
+
 - Tokens seguros com expiração de 48h
 - Cookies HttpOnly para persistência
 - Verificação de nível de acesso
 - Middleware de proteção de rotas
 
 ### Rotas Protegidas
+
 - `/portal`: Dashboard principal
 - `/resources`: Biblioteca de recursos
 - `/missions`: Sistema de missões
@@ -74,6 +76,7 @@ O PRO.IA é um sistema completo para transformar Inteligência Artificial em fat
 ## 📊 Tracking e Analytics
 
 ### Eventos Rastreados
+
 - `resource_view`: Visualização de recursos
 - `download_click`: Downloads realizados
 - `video_play`: Reprodução de vídeos
@@ -81,6 +84,7 @@ O PRO.IA é um sistema completo para transformar Inteligência Artificial em fat
 - `mission_complete`: Conclusão de missões
 
 ### Métricas Importantes
+
 - Taxa de conversão por nível
 - Recursos mais acessados
 - Missões com maior engajamento
@@ -89,6 +93,7 @@ O PRO.IA é um sistema completo para transformar Inteligência Artificial em fat
 ## 🛠️ Implementação Técnica
 
 ### Stack Tecnológico
+
 - **Frontend**: Next.js 14 + React + TypeScript
 - **Styling**: Tailwind CSS + Glassmorphism
 - **Autenticação**: JWT + Netlify Functions

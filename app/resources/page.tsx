@@ -2,12 +2,22 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { useRequireAuth } from '../../hooks/useAuth'
-import { Resource } from '../../types'
 import PDFViewer from '../components/PDFViewer'
 
+interface Resource {
+  id: string
+  title: string
+  level: 'Basico' | 'Avancado' | 'Expert'
+  type: 'PDF' | 'Video' | 'Link' | 'Template' | 'Prompt' | 'Checklist'
+  url: string
+  thumbnail?: string
+  locked: boolean
+  updated_at: string
+  description?: string
+  tags?: string[]
+}
+
 export default function ResourcesPage() {
-  const { user, loading } = useRequireAuth('/')
   const [resources, setResources] = useState<Resource[]>([])
   const [filteredResources, setFilteredResources] = useState<Resource[]>([])
   const [filters, setFilters] = useState({
@@ -17,22 +27,68 @@ export default function ResourcesPage() {
   })
   const [favorites, setFavorites] = useState<string[]>([])
   const [selectedResource, setSelectedResource] = useState<Resource | null>(null)
-  const [showPDFViewer, setShowPDFViewer] = useState(false)
+  const [user, setUser] = useState<any>(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    if (user) {
-      loadResources()
-    }
-  }, [user])
+    // Simular usuário logado
+    setUser({
+      email: 'user@proia.local',
+      xp: 250,
+      level: 'expert'
+    })
+    
+    // Carregar recursos mockados
+    loadResources()
+    setLoading(false)
+  }, [])
 
   const loadResources = async () => {
     try {
-      const response = await fetch(`/api/resources?user_id=${user?.email}`)
+      const response = await fetch('/api/resources')
       const data = await response.json()
       setResources(data.resources)
       setFilteredResources(data.resources)
     } catch (error) {
       console.error('Erro ao carregar recursos:', error)
+      // Fallback com dados mockados
+      const mockResources: Resource[] = [
+        {
+          id: 'res_001',
+          title: 'Manual PRO.IA v1.2',
+          level: 'Basico',
+          type: 'PDF',
+          url: '/docs/manual-proia-v1-2.pdf',
+          locked: false,
+          updated_at: '2025-01-15T12:00:00Z',
+          description: 'Manual completo para usar IA de forma prática',
+          tags: ['manual', 'basico', 'pdf']
+        },
+        {
+          id: 'res_002',
+          title: 'GPT PRO.IA - Link Direto',
+          level: 'Basico',
+          type: 'Link',
+          url: 'https://chat.openai.com/g/g-proia-custom',
+          locked: false,
+          updated_at: '2025-01-15T12:00:00Z',
+          description: 'Acesse nosso GPT customizado para vendas',
+          tags: ['gpt', 'chat', 'basico']
+        },
+        {
+          id: 'res_003',
+          title: 'Timeline 2024 - Revolução IA',
+          level: 'Avancado',
+          type: 'Video',
+          url: 'https://www.youtube.com/watch?v=timeline2024',
+          locked: false,
+          updated_at: '2025-01-15T12:00:00Z',
+          description: 'Análise completa da evolução da IA em 2024',
+          tags: ['video', 'timeline', 'avancado']
+        }
+      ]
+      setResources(mockResources)
+      setFilteredResources(mockResources)
     }
   }
 
@@ -101,11 +157,9 @@ export default function ResourcesPage() {
 
   const openPDFViewer = (resource: Resource) => {
     setSelectedResource(resource)
-    setShowPDFViewer(true)
   }
 
   const closePDFViewer = () => {
-    setShowPDFViewer(false)
     setSelectedResource(null)
   }
 
@@ -355,7 +409,7 @@ export default function ResourcesPage() {
       </div>
 
       {/* PDF Viewer Modal */}
-      {showPDFViewer && selectedResource && (
+      {selectedResource && (
         <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
           <div className="relative w-full max-w-6xl max-h-full">
             <button
@@ -364,11 +418,13 @@ export default function ResourcesPage() {
             >
               ✕ Fechar
             </button>
-            <PDFViewer
-              pdfUrl={selectedResource.url}
-              title={selectedResource.title}
-              onDownload={() => handleDownload(selectedResource)}
-            />
+            {selectedResource && (
+              <PDFViewer
+                pdfUrl={selectedResource.url}
+                title={selectedResource.title}
+                onDownload={() => handleDownload(selectedResource)}
+              />
+            )}
           </div>
         </div>
       )}

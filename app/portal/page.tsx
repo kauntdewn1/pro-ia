@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { useRequireAuth } from '../../hooks/useAuth'
 
 interface Mission {
   code: string
@@ -13,8 +12,9 @@ interface Mission {
 }
 
 export default function PortalPage() {
-  const { user, loading } = useRequireAuth('/')
   const [missions, setMissions] = useState<Mission[]>([])
+  const [user, setUser] = useState<any>(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     // Simular carregamento das missões
@@ -41,6 +41,14 @@ export default function PortalPage() {
         reward: 'Badge Social + 20 XP'
       }
     ])
+
+    // Simular usuário logado
+    setUser({
+      email: 'user@proia.local',
+      xp: 250,
+      level: 'expert'
+    })
+    setLoading(false)
   }, [])
 
   if (loading) {
@@ -52,10 +60,6 @@ export default function PortalPage() {
         </div>
       </div>
     )
-  }
-
-  if (!user) {
-    return null // useRequireAuth já redirecionou
   }
 
   const startMission = (code: string) => {
@@ -120,6 +124,31 @@ export default function PortalPage() {
               >
                 🎮 Missões
               </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Comet Browser - Parceiro Recomendado */}
+        <div className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-blue-400/30 rounded-2xl p-6 mb-8 backdrop-blur-xl">
+          <div className="text-center space-y-4">
+            <div className="text-blue-400 font-mono text-lg animate-pulse">
+              &gt; BROWSER RECOMENDADO: COMET
+            </div>
+            <div className="text-white/90 text-sm">
+              O navegador dos sonhos para desenvolvedores e criadores de IA
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <a 
+                href="https://pplx.ai/neo_protocol" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold px-8 py-4 rounded-xl hover:from-blue-400 hover:to-purple-500 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-blue-400/50 inline-flex items-center gap-2"
+              >
+                🌟 BAIXAR COMET BROWSER
+              </a>
+              <div className="text-blue-300 text-xs font-mono">
+                &gt; Powered by NEØ Protocol
+              </div>
             </div>
           </div>
         </div>

@@ -2,24 +2,31 @@ User-agent: *
 Allow: /
 
 # Páginas principais
-Allow: /portal
-Allow: /resources
-Allow: /missions
+Allow: /portal/
+Allow: /resources/
+Allow: /missions/
+Allow: /protected/
 
-# Recursos PDFs
+# Recursos estáticos
 Allow: /docs/
+Allow: /images/
+Allow: /logo/
+Allow: /audio/
+Allow: /icons/
 
-# APIs (para crawlers que precisam)
+# APIs públicas
+Allow: /api/auth/login
 Allow: /api/resources
 Allow: /api/missions
 
-# Bloquear páginas sensíveis
-Disallow: /api/auth/
-Disallow: /protected
-Disallow: /admin
+# Bloquear arquivos sensíveis
+Disallow: /api/webhook/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /node_modules/
 
 # Sitemap
 Sitemap: https://proia.netlify.app/sitemap.xml
 
-# Crawl-delay para evitar sobrecarga
+# Crawl delay para evitar sobrecarga
 Crawl-delay: 1
